@@ -1,5 +1,7 @@
 # santoku (development version)
 
+* Bugfix: `lbl_discrete()` can now work with non-integer breaks, for when 
+  `unit < 1`.
 # santoku 1.2.1
 
 * Fixed a test bug.

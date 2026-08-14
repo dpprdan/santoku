@@ -306,6 +306,12 @@ test_that("lbl_discrete", {
 })
 
 
+test_that("bugfix: lbl_discrete() accepts non-integer breaks", {
+  non_integer_brk <- brk_res(brk_default(c(1, 2.5, 4)))
+  expect_no_error(lbl_discrete()(non_integer_brk))
+})
+
+
 test_that("lbl_discrete arguments", {
   lbrk <- brk_res(brk_default(c(1, 3, 5)))
   expect_equal(
@@ -344,6 +350,12 @@ test_that("lbl_discrete arguments", {
   expect_equal(
     lbl_discrete("-", unit = 1000)(brk1000),
     c("1000-2000", "3000-5000")
+  )
+
+  brk0.5 <- brk_res(brk_default(c(1, 2, 3)))
+  expect_equal(
+    lbl_discrete("-", unit = 0.5)(brk0.5),
+    c("1-1.5", "2-3")
   )
 })
 

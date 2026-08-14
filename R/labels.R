@@ -135,8 +135,6 @@ lbl_discrete <- function (
         )
 
   function (breaks, raw = NULL) {
-    assert_that(all(ceiling(as.numeric(breaks)) == floor(as.numeric(breaks))),
-          msg = "Non-integer breaks")
 
     pieces <- discrete_interval_endpoints(
       breaks = breaks,
