@@ -1,3 +1,5 @@
+# santoku (development version)
+
 # santoku 2.0.0
 
 * Breaking change: `chop_quantiles()` with non-null `weights` now normalizes
