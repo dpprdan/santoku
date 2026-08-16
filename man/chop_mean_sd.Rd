@@ -6,9 +6,9 @@
 \alias{tab_mean_sd}
 \title{Chop by standard deviations}
 \usage{
-chop_mean_sd(x, sds = 1:3, ..., raw = FALSE, sd = deprecated())
+chop_mean_sd(x, sds = 1:3, ..., raw = FALSE, weights = NULL, sd = deprecated())
 
-brk_mean_sd(sds = 1:3, sd = deprecated())
+brk_mean_sd(sds = 1:3, weights = NULL, sd = deprecated())
 
 tab_mean_sd(x, sds = 1:3, ..., raw = FALSE)
 }
@@ -20,6 +20,9 @@ tab_mean_sd(x, sds = 1:3, ..., raw = FALSE)
 \item{...}{Passed to \code{\link[=chop]{chop()}}.}
 
 \item{raw}{Logical. Use raw values in labels?}
+
+\item{weights}{Optional weights for the mean/sd calculation. Weights are
+normalized to sum to \code{length(x)}.}
 
 \item{sd}{\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}}
 }
@@ -41,6 +44,8 @@ To chop 1, 2 and 3 standard deviations around the mean, write
 }
 \examples{
 chop_mean_sd(1:10)
+
+chop_mean_sd(1:4, weights = 1:4)
 
 chop(1:10, brk_mean_sd())
 

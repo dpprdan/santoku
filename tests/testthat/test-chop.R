@@ -322,6 +322,15 @@ test_that("chop_mean_sd", {
     factor(c("[-1, 0)", "[0, 1)", "[1, 2)"),
            levels = c("[-1, 0)", "[0, 1)", "[1, 2)"))
   )
+
+  weights <- 1:3
+  weighted_mean <- stats::weighted.mean(x, weights)
+  weighted_sd <- sqrt(Hmisc::wtd.var(x, weights, normwt = TRUE))
+  weighted_breaks <- weighted_mean + (-1:1) * weighted_sd
+  expect_equal(
+    chop_mean_sd(x, sds = 1, weights = weights, raw = TRUE),
+    chop(x, weighted_breaks, raw = TRUE)
+  )
 })
 
 

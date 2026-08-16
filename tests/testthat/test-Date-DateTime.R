@@ -77,6 +77,20 @@ test_that("chop_mean_sd", {
   # the -10 and 10 capture values outside 1.4 sds:
   cmp3 <- cut(d1,  mean(d1) + c(-10, -1.4, -1, 0, 1, 1.4, 10) * sd(d1), right = FALSE)
   expect_equal(table_vals(res3), table_vals(cmp3), ignore_attr = TRUE)
+
+  weights <- seq_along(d1)
+  expect_silent(res4 <- chop_mean_sd(d1, weights = weights))
+  weighted_sd <- sqrt(Hmisc::wtd.var(
+    as.numeric(d1),
+    weights = weights,
+    normwt = TRUE
+  ))
+  cmp4 <- cut(
+    d1,
+    weighted.mean(d1, weights) + c(-10, -2:2) * weighted_sd,
+    right = FALSE
+  )
+  expect_equal(table_vals(res4), table_vals(cmp4), ignore_attr = TRUE)
 })
 
 
