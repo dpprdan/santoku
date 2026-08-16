@@ -8,8 +8,8 @@
 #'   names, these will be used for labels.
 #' @param ... For `chop_quantiles`, passed to [chop()]. For `brk_quantiles()`,
 #'   passed to [stats::quantile()] or [Hmisc::wtd.quantile()].
-#' @param weights `NULL` or numeric vector of same length as `x`. If not
-#'   `NULL`, [Hmisc::wtd.quantile()] is used to calculate weighted quantiles.
+#' @param weights Optional weights for the quantile calculation. Weights are
+#'   normalized to sum to `length(x)`.
 #' @param recalc_probs Logical. Recalculate probabilities of quantiles using
 #'   [`ecdf(x)`][stats::ecdf()]? See below.
 #'
@@ -168,4 +168,3 @@ chop_n <- function (
 
   res
 }
-

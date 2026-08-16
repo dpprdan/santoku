@@ -234,6 +234,30 @@ test_that("brk_quantiles", {
   brks <- brk_quantiles(1:3/4, weights = 1:10)(x, FALSE, TRUE, FALSE)
   expect_equal(
     c(brks),
+    Hmisc::wtd.quantile(x, weights = 1:10, probs = 1:3/4, normwt = TRUE),
+    ignore_attr = TRUE
+  )
+
+  scaled_brks <- brk_quantiles(
+    1:3/4,
+    weights = (1:10) / sum(1:10)
+  )(x, FALSE, TRUE, FALSE)
+  expect_equal(c(scaled_brks), c(brks))
+
+  equal_brks <- brk_quantiles(
+    1:3/4,
+    weights = rep(2, length(x))
+  )(x, FALSE, TRUE, FALSE)
+  unweighted_brks <- brk_quantiles(1:3/4)(x, FALSE, TRUE, FALSE)
+  expect_equal(c(equal_brks), c(unweighted_brks))
+
+  frequency_brks <- brk_quantiles(
+    1:3/4,
+    weights = 1:10,
+    normwt = FALSE
+  )(x, FALSE, TRUE, FALSE)
+  expect_equal(
+    c(frequency_brks),
     Hmisc::wtd.quantile(x, weights = 1:10, probs = 1:3/4),
     ignore_attr = TRUE
   )

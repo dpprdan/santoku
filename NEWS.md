@@ -1,7 +1,13 @@
 # santoku (development version)
 
+* Breaking change: `chop_quantiles()` with non-null `weights` now normalizes
+  weights by default. This typically changes the result. Use `brk_quantiles(...,
+  normwt = FALSE)` to reproduce the old behaviour.
+* `chop_mean_sd()` gains a `weights` argument.
 * Bugfix: `lbl_discrete()` can now work with non-integer breaks, for when 
   `unit < 1`.
+
+
 # santoku 1.2.1
 
 * Fixed a test bug.

@@ -43,8 +43,8 @@ passed to \code{\link[stats:quantile]{stats::quantile()}} or \code{\link[Hmisc:w
 
 \item{raw}{Logical. Use raw values in labels?}
 
-\item{weights}{\code{NULL} or numeric vector of same length as \code{x}. If not
-\code{NULL}, \code{\link[Hmisc:wtd.quantile]{Hmisc::wtd.quantile()}} is used to calculate weighted quantiles.}
+\item{weights}{Optional weights for the quantile calculation. Weights are
+normalized to sum to \code{length(x)}.}
 
 \item{recalc_probs}{Logical. Recalculate probabilities of quantiles using
 \code{\link[stats:ecdf]{ecdf(x)}}? See below.}

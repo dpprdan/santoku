@@ -27,6 +27,7 @@ brk_quantiles <- function (probs, ..., weights = NULL, recalc_probs = FALSE) {
       rlang::check_installed("Hmisc",
                              reason = "to use `weights` in brk_quantiles()")
       dots$weights <- weights
+      if (! "normwt" %in% names(dots)) dots$normwt <- TRUE
       do.call(Hmisc::wtd.quantile, dots)
     }
 
