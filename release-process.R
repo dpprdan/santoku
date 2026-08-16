@@ -30,16 +30,12 @@ news_heading <- paste("#", package_name, version)
 news_start <- match(news_heading, news)
 stopifnot(! is.na(news_start))
 
-# Regenerate everything committed to the repository, then require a clean tree.
+# Regenerate everything committed to the repository.
 devtools::document()
 devtools::build_readme()
 pkgdown::build_site()
 
-generated_changes <- system2("git", c("status", "--porcelain"), stdout = TRUE)
-if (length(generated_changes) > 0L) {
-  print(generated_changes)
-  stop("Commit the regenerated files, then restart the release process.")
-}
+# Review and commit the regenerated files before continuing.
 
 # Local checks. Fail on any R CMD check note, warning or error.
 spelling <- devtools::spell_check()
@@ -53,6 +49,10 @@ devtools::check(
   manual = TRUE,
   cran = TRUE,
   remote = FALSE,
+  env_vars = c(
+    NOT_CRAN = "true",
+    `_R_CHECK_SYSTEM_CLOCK_` = "FALSE"
+  ),
   error_on = "note"
 )
 

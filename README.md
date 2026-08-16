@@ -25,7 +25,7 @@ install.packages("santoku", repos = c("https://hughjonesd.r-universe.dev",
                                       "https://cloud.r-project.org"))
 ```
 
-Or get the development version from github:
+Or get the development version from GitHub:
 
 ``` r
 # install.packages("remotes")
@@ -104,10 +104,10 @@ Chop into fixed-width intervals:
 
 ``` r
 chop_width(runif(10), 0.1)
-#>  [1] [0.5822, 0.6822)  [0.8822, 0.9822]  [0.7822, 0.8822)  [0.08223, 0.1822)
-#>  [5] [0.2822, 0.3822)  [0.7822, 0.8822)  [0.08223, 0.1822) [0.3822, 0.4822) 
-#>  [9] [0.5822, 0.6822)  [0.6822, 0.7822) 
-#> 7 Levels: [0.08223, 0.1822) [0.2822, 0.3822) ... [0.8822, 0.9822]
+#>  [1] [0.8347, 0.9347) [0.9347, 1.035]  [0.2347, 0.3347) [0.7347, 0.8347)
+#>  [5] [0.6347, 0.7347) [0.4347, 0.5347) [0.7347, 0.8347) [0.1347, 0.2347)
+#>  [9] [0.6347, 0.7347) [0.6347, 0.7347)
+#> 7 Levels: [0.1347, 0.2347) [0.2347, 0.3347) ... [0.9347, 1.035]
 ```
 
 Or into fixed-size groups:

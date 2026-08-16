@@ -1,10 +1,10 @@
-# santoku (development version)
+# santoku 2.0.0
 
 * Breaking change: `chop_quantiles()` with non-null `weights` now normalizes
   weights by default. This typically changes the result. Use `brk_quantiles(...,
   normwt = FALSE)` to reproduce the old behaviour.
 * `chop_mean_sd()` gains a `weights` argument.
-* Bugfix: `lbl_discrete()` can now work with non-integer breaks, for when 
+* Bug fix: `lbl_discrete()` can now work with non-integer breaks, for when
   `unit < 1`.
 
 
@@ -20,14 +20,14 @@
 
 * New experimental `lbl_date()` and `lbl_datetime()` functions for pretty 
   formatting of dates and date-times.
-* Bugfix: extended breaks were failing on `haven::labelled` objects.
+* Bug fix: extended breaks were failing on `haven::labelled` objects.
 * The `raw` argument to `lbl_*` functions, deprecated since 0.9.0, now throws
   an error.
 
 
 # santoku 1.1.0
 
-* Core logic has been speeded up using raw pointers. This was vibe-coded by me
+* Core logic has been sped up using raw pointers. This was vibe-coded by me
   and Claude Code. If it breaks, please file a bug report.
 * The experimental `chop_spikes()` and `dissect()` functions give 
   common values of `x` their own singleton intervals.
@@ -43,7 +43,7 @@
   recalculates probabilities using `ecdf(x)`, which may give more accurate 
   interval labels.
 * `single = NULL` has been documented explicitly in `lbl_*` functions.
-* Bugfix: `brk_manual()` no longer warns if `close_end = TRUE` (the default).
+* Bug fix: `brk_manual()` no longer warns if `close_end = TRUE` (the default).
 
 
 # santoku 1.0.0
@@ -68,7 +68,7 @@
   `n` elements.
 * `chop_equally()` may return fewer than `groups` groups when there are 
   duplicate elements. We now warn when this happens.
-* Bugfix: `chop_n()` could return intervals with fewer than `n` elements 
+* Bug fix: `chop_n()` could return intervals with fewer than `n` elements
   when there were duplicate elements. The new algorithm avoids this, but
   may be slower in this case.
 
@@ -168,7 +168,7 @@ please file an issue.
 * `chop()` is more forgiving when mixing different types, e.g.:
   - `Date` objects with `POSIXct` breaks, and vice versa
   - `bit64::integer64` and `double`s
-* Bugfix: `lbl_discrete()` sometimes had ugly label formatting. 
+* Bug fix: `lbl_discrete()` sometimes had ugly label formatting.
 
 
 # santoku 0.7.0
@@ -203,14 +203,14 @@ please file an issue.
 * Arguments `first`, `last` and `single` can be used in `lbl_intervals()` 
   and `lbl_dash()`, to override the first and last interval labels, or to 
   label singleton intervals.
-* `lbl_dash()` and `lbl_discrete()` use unicode em-dash where possible.
+* `lbl_dash()` and `lbl_discrete()` use Unicode em-dash where possible.
 * `brk_default()` throws an error if breaks are not sorted.
 
   
-## Bugfixes
+## Bug fixes
 
-* Bugfix: `tab()` and friends no longer display an `x` as the variable name.
-* Bugfix: `lbl_endpoint()` was erroring for some types of breaks.
+* Bug fix: `tab()` and friends no longer display an `x` as the variable name.
+* Bug fix: `lbl_endpoint()` failed for some types of breaks.
 
 
 
@@ -229,7 +229,7 @@ please file an issue.
   
 # santoku 0.4.1
 
-* Bugfix: `chop(1:4, 1)` was erroring. 
+* Bug fix: `chop(1:4, 1)` failed.
 
 # santoku 0.4.0
 
@@ -288,7 +288,7 @@ and are designed to make using `chop()` more intuitive and predictable.
 
 * Minor tweaks to `chop_deciles()`.
 
-* Bugfix: `lbl_format()` wasn't accepting numeric formats, even when 
+* Bug fix: `lbl_format()` wasn't accepting numeric formats, even when
   `raw = TRUE`. Thanks to Sharla Gelfand.
 
 # santoku 0.3.0

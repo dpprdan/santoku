@@ -37,7 +37,6 @@ months.
 ## Examples
 
 ``` r
-
 if (requireNamespace("lubridate")) {
   year2001 <- as.Date("2001-01-01") + 0:364
   tab_width(year2001, months(1),

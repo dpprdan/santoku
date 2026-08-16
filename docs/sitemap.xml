@@ -47,6 +47,15 @@
 <url><loc>https://hughjonesd.github.io/santoku/reference/percent.html</loc></url>
 <url><loc>https://hughjonesd.github.io/santoku/reference/santoku-cast.html</loc></url>
 <url><loc>https://hughjonesd.github.io/santoku/reference/santoku-package.html</loc></url>
+<url><loc>https://hughjonesd.github.io/santoku/reference/santoku_cast_common.Date.html</loc></url>
+<url><loc>https://hughjonesd.github.io/santoku/reference/santoku_cast_common.POSIXct.html</loc></url>
+<url><loc>https://hughjonesd.github.io/santoku/reference/santoku_cast_common.default.html</loc></url>
+<url><loc>https://hughjonesd.github.io/santoku/reference/santoku_cast_common.double.html</loc></url>
+<url><loc>https://hughjonesd.github.io/santoku/reference/santoku_cast_common.hexmode.html</loc></url>
+<url><loc>https://hughjonesd.github.io/santoku/reference/santoku_cast_common.integer64.html</loc></url>
+<url><loc>https://hughjonesd.github.io/santoku/reference/santoku_cast_common.octmode.html</loc></url>
+<url><loc>https://hughjonesd.github.io/santoku/reference/santoku_cast_common.ts.html</loc></url>
+<url><loc>https://hughjonesd.github.io/santoku/reference/santoku_cast_common.zoo.html</loc></url>
 <url><loc>https://hughjonesd.github.io/santoku/reference/sequence-labels.html</loc></url>
 <url><loc>https://hughjonesd.github.io/santoku/tutorials/00-visualintroduction.html</loc></url>
 <url><loc>https://hughjonesd.github.io/santoku/tutorials/01-chopping-dates.html</loc></url>

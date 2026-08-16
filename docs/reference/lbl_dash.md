@@ -60,7 +60,7 @@ A function that creates a vector of labels.
 
 ## Details
 
-If you don't want unicode output, use `lbl_dash("-")`.
+If you don't want Unicode output, use `lbl_dash("-")`.
 
 ## Formatting endpoints
 

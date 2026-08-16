@@ -164,7 +164,7 @@ previous behaviour. Up to version 0.8.0, `close_end` was applied to the
 last user-specified interval, before any extended intervals were
 created.
 
-Since 1.1.0, infinity is represented as \\\infty\\ in breaks on unicode
+Since 1.1.0, infinity is represented as \\\infty\\ in breaks on Unicode
 platforms. Set `options(santoku.infinity = "Inf")` to get the old
 behaviour.
 
@@ -230,7 +230,6 @@ Other chopping functions:
 ## Examples
 
 ``` r
-
 chop(1:7, c(2, 4, 6))
 #> [1] [1, 2) [2, 4) [2, 4) [4, 6) [4, 6) [6, 7] [6, 7]
 #> Levels: [1, 2) [2, 4) [4, 6) [6, 7]

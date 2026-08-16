@@ -6,9 +6,9 @@ mean.
 ## Usage
 
 ``` r
-chop_mean_sd(x, sds = 1:3, ..., raw = FALSE, sd = deprecated())
+chop_mean_sd(x, sds = 1:3, ..., raw = FALSE, weights = NULL, sd = deprecated())
 
-brk_mean_sd(sds = 1:3, sd = deprecated())
+brk_mean_sd(sds = 1:3, weights = NULL, sd = deprecated())
 
 tab_mean_sd(x, sds = 1:3, ..., raw = FALSE)
 ```
@@ -31,6 +31,11 @@ tab_mean_sd(x, sds = 1:3, ..., raw = FALSE)
 - raw:
 
   Logical. Use raw values in labels?
+
+- weights:
+
+  Optional weights for the mean/sd calculation. Weights are normalized
+  to sum to `length(x)`.
 
 - sd:
 
@@ -75,6 +80,10 @@ chop_mean_sd(1:10)
 #>  [1] [-2 sd, -1 sd) [-2 sd, -1 sd) [-1 sd, 0 sd)  [-1 sd, 0 sd)  [-1 sd, 0 sd) 
 #>  [6] [0 sd, 1 sd)   [0 sd, 1 sd)   [0 sd, 1 sd)   [1 sd, 2 sd)   [1 sd, 2 sd)  
 #> Levels: [-2 sd, -1 sd) [-1 sd, 0 sd) [0 sd, 1 sd) [1 sd, 2 sd)
+
+chop_mean_sd(1:4, weights = 1:4)
+#> [1] [-2 sd, -1 sd) [-1 sd, 0 sd)  [0 sd, 1 sd)   [0 sd, 1 sd)  
+#> Levels: [-2 sd, -1 sd) [-1 sd, 0 sd) [0 sd, 1 sd)
 
 chop(1:10, brk_mean_sd())
 #>  [1] [-2 sd, -1 sd) [-2 sd, -1 sd) [-1 sd, 0 sd)  [-1 sd, 0 sd)  [-1 sd, 0 sd) 

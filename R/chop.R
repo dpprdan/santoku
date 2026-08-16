@@ -98,7 +98,7 @@ NULL
 #' last user-specified interval, before any extended intervals were created.
 #'
 #' Since 1.1.0, infinity is represented as \eqn{\infty}{the infinity symbol}
-#' in breaks on unicode platforms. Set  `options(santoku.infinity = "Inf")`
+#' in breaks on Unicode platforms. Set  `options(santoku.infinity = "Inf")`
 #' to get the old behaviour.
 #'
 #' ## Labels

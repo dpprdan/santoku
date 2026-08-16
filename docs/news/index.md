@@ -1,8 +1,24 @@
 # Changelog
 
+## santoku 2.0.0
+
+- Breaking change:
+  [`chop_quantiles()`](https://hughjonesd.github.io/santoku/reference/chop_quantiles.md)
+  with non-null `weights` now normalizes weights by default. This
+  typically changes the result. Use `brk_quantiles(..., normwt = FALSE)`
+  to reproduce the old behaviour.
+- [`chop_mean_sd()`](https://hughjonesd.github.io/santoku/reference/chop_mean_sd.md)
+  gains a `weights` argument.
+- Bug fix:
+  [`lbl_discrete()`](https://hughjonesd.github.io/santoku/reference/lbl_discrete.md)
+  can now work with non-integer breaks, for when `unit < 1`.
+
 ## santoku 1.2.1
 
 - Fixed a test bug.
+- CRAN rejected the fix and didn’t reply to my emails querying what they
+  wanted. I see little value in jumping through hoops, so from now on
+  santoku versions will be released on r-universe.dev exclusively.
 
 ## santoku 1.2.0
 
@@ -13,7 +29,7 @@ CRAN release: 2026-04-28
   and
   [`lbl_datetime()`](https://hughjonesd.github.io/santoku/reference/lbl_datetime.md)
   functions for pretty formatting of dates and date-times.
-- Bugfix: extended breaks were failing on
+- Bug fix: extended breaks were failing on
   [`haven::labelled`](https://haven.tidyverse.org/reference/labelled.html)
   objects.
 - The `raw` argument to `lbl_*` functions, deprecated since 0.9.0, now
@@ -23,8 +39,8 @@ CRAN release: 2026-04-28
 
 CRAN release: 2025-09-11
 
-- Core logic has been speeded up using raw pointers. This was vibe-coded
-  by me and Claude Code. If it breaks, please file a bug report.
+- Core logic has been sped up using raw pointers. This was vibe-coded by
+  me and Claude Code. If it breaks, please file a bug report.
 - The experimental
   [`chop_spikes()`](https://hughjonesd.github.io/santoku/reference/chop_spikes.md)
   and
@@ -44,7 +60,7 @@ CRAN release: 2025-09-11
   probabilities using `ecdf(x)`, which may give more accurate interval
   labels.
 - `single = NULL` has been documented explicitly in `lbl_*` functions.
-- Bugfix:
+- Bug fix:
   [`brk_manual()`](https://hughjonesd.github.io/santoku/reference/brk_manual.md)
   no longer warns if `close_end = TRUE` (the default).
 
@@ -80,7 +96,7 @@ CRAN release: 2023-10-12
 - [`chop_equally()`](https://hughjonesd.github.io/santoku/reference/chop_equally.md)
   may return fewer than `groups` groups when there are duplicate
   elements. We now warn when this happens.
-- Bugfix:
+- Bug fix:
   [`chop_n()`](https://hughjonesd.github.io/santoku/reference/chop_n.md)
   could return intervals with fewer than `n` elements when there were
   duplicate elements. The new algorithm avoids this, but may be slower
@@ -107,7 +123,6 @@ There are important changes to `close_end`.
   In previous versions:
 
   ``` r
-
   chop(1:2, 1:2)
   ## [1] [1, 2) {2}   
   ## Levels: [1, 2) {2}  
@@ -116,7 +131,6 @@ There are important changes to `close_end`.
   Whereas now:
 
   ``` r
-
   chop(1:2, 1:2)
   ## [1] [1, 2] [1, 2]
   ## Levels: [1, 2]
@@ -126,7 +140,6 @@ There are important changes to `close_end`.
   previous versions:
 
   ``` r
-
   chop(1:4, 2:3, close_end = TRUE)
   ## [1] [1, 2) [2, 3] [2, 3] (3, 4]
   ## Levels: [1, 2) [2, 3] (3, 4]
@@ -135,7 +148,6 @@ There are important changes to `close_end`.
   Whereas now:
 
   ``` r
-
   chop(1:4, 2:3, close_end = TRUE)
   ## [1] [1, 2) [2, 3) [3, 4] [3, 4]
   ## Levels: [1, 2) [2, 3) [3, 4]
@@ -146,7 +158,6 @@ We changed this behaviour to be more in line with user expectations.
 - If `breaks` has names, they will be used as labels:
 
   ``` r
-
   chop(1:5, c(Low = 1, Mid = 2, High = 4))
   ## [1] Low  Mid  Mid  High High
   ## Levels: Low Mid High  
@@ -233,7 +244,7 @@ CRAN release: 2022-06-08
   - `Date` objects with `POSIXct` breaks, and vice versa
   - [`bit64::integer64`](https://bit64.r-lib.org/reference/bit64-package.html)
     and `double`s
-- Bugfix:
+- Bug fix:
   [`lbl_discrete()`](https://hughjonesd.github.io/santoku/reference/lbl_discrete.md)
   sometimes had ugly label formatting.
 
@@ -288,18 +299,18 @@ CRAN release: 2022-03-18
 - [`lbl_dash()`](https://hughjonesd.github.io/santoku/reference/lbl_dash.md)
   and
   [`lbl_discrete()`](https://hughjonesd.github.io/santoku/reference/lbl_discrete.md)
-  use unicode em-dash where possible.
+  use Unicode em-dash where possible.
 - [`brk_default()`](https://hughjonesd.github.io/santoku/reference/brk_default.md)
   throws an error if breaks are not sorted.
 
-### Bugfixes
+### Bug fixes
 
-- Bugfix:
+- Bug fix:
   [`tab()`](https://hughjonesd.github.io/santoku/reference/chop.md) and
   friends no longer display an `x` as the variable name.
-- Bugfix:
+- Bug fix:
   [`lbl_endpoint()`](https://hughjonesd.github.io/santoku/reference/lbl_endpoints.md)
-  was erroring for some types of breaks.
+  failed for some types of breaks.
 
 ## santoku 0.6.0
 
@@ -326,7 +337,7 @@ CRAN release: 2020-08-27
 
 CRAN release: 2020-06-16
 
-- Bugfix: `chop(1:4, 1)` was erroring.
+- Bug fix: `chop(1:4, 1)` failed.
 
 ## santoku 0.4.0
 
@@ -419,7 +430,7 @@ intuitive and predictable.
 - Minor tweaks to
   [`chop_deciles()`](https://hughjonesd.github.io/santoku/reference/chop_quantiles.md).
 
-- Bugfix: `lbl_format()` wasn’t accepting numeric formats, even when
+- Bug fix: `lbl_format()` wasn’t accepting numeric formats, even when
   `raw = TRUE`. Thanks to Sharla Gelfand.
 
 ## santoku 0.3.0

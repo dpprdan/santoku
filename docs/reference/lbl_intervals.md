@@ -98,7 +98,6 @@ Other labelling functions:
 ## Examples
 
 ``` r
-
 tab(-10:10, c(-3, 0, 0, 3),
       labels = lbl_intervals())
 #> [-10, -3)   [-3, 0)       {0}    (0, 3)   [3, 10] 

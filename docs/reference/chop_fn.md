@@ -97,7 +97,6 @@ Other chopping functions:
 ## Examples
 
 ``` r
-
 if (requireNamespace("scales")) {
   chop_fn(rlnorm(10), scales::breaks_log(5))
   # same as

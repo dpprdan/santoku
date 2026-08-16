@@ -256,7 +256,7 @@ chopped <- chop(x, c(2, 5, 8), labels = lbl_seq())
 data.frame(x, chopped)
 ```
 
-You can use numerals or even roman numerals:
+You can use numerals or even Roman numerals:
 
 ```{r}
 chop(x, c(2, 5, 8), labels = lbl_seq("(1)"))
@@ -337,7 +337,7 @@ data.frame(
 
 ```
 
-Note how santoku correctly handles the different timezones.
+Note how santoku correctly handles the different time zones.
 
 You can use `chop_width()` with objects from the `lubridate` package, 
 to chop by irregular periods such as months:

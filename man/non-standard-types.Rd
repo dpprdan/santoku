@@ -20,7 +20,7 @@ on a character vector.
 \item For indexed objects such as \code{\link[stats:ts]{stats::ts()}} objects, indices will be dropped
 from the result.
 \item If you get errors, try setting \code{extend = FALSE} (but also file a bug report).
-\item To request support for a type, open an issue on Github.
+\item To request support for a type, open an issue on GitHub.
 }
 }
 \seealso{

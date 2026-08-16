@@ -93,7 +93,6 @@
     vs. something readable in `tab_*`. E.g.
 
     ``` r
-
     tab_size(1:9, 3, lbl_seq()) 
     ```
 

@@ -140,7 +140,7 @@ previous behaviour. Up to version 0.8.0, \code{close_end} was applied to the
 last user-specified interval, before any extended intervals were created.
 
 Since 1.1.0, infinity is represented as \eqn{\infty}{the infinity symbol}
-in breaks on unicode platforms. Set  \code{options(santoku.infinity = "Inf")}
+in breaks on Unicode platforms. Set  \code{options(santoku.infinity = "Inf")}
 to get the old behaviour.
 }
 

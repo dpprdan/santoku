@@ -15,7 +15,7 @@
 #' * For indexed objects such as [stats::ts()] objects, indices will be dropped
 #'   from the result.
 #' * If you get errors, try setting `extend = FALSE` (but also file a bug report).
-#' * To request support for a type, open an issue on Github.
+#' * To request support for a type, open an issue on GitHub.
 #'
 #' @name non-standard-types
 #' @seealso brk-width-for-Datetime

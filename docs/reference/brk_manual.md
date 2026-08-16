@@ -31,7 +31,6 @@ All breaks must be closed on exactly one side, like `..., x) [x, ...`
 For example, if `breaks = 1:3` and `left = c(TRUE, FALSE, TRUE)`, then
 the resulting intervals are
 
-
     T        F       T
     [ 1,  2 ] ( 2, 3 )
 

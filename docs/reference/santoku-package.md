@@ -67,6 +67,10 @@ Useful links:
 
 **Maintainer**: David Hugh-Jones <davidhughjones@gmail.com>
 
+Authors:
+
+- David Hugh-Jones <davidhughjones@gmail.com>
+
 Other contributors:
 
 - Daniel Possenriede <possenriede@gmail.com> \[contributor\]

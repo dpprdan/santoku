@@ -1,7 +1,7 @@
 Package: santoku
 Type: Package
 Title: A Versatile Cutting Tool
-Version: 1.2.1.9000
+Version: 2.0.0
 Authors@R:
     c(
     person(given = "David",
@@ -20,6 +20,7 @@ Description: A tool for cutting data into intervals. Allows singleton intervals.
   and other vectors.
 License: MIT + file LICENSE
 Encoding: UTF-8
+Language: en-GB
 Roxygen: list(markdown = TRUE)
 Suggests: 
     bench,

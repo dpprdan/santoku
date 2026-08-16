@@ -42,7 +42,7 @@ left- and right-closed intervals. It's good for continuous data
 where you don't expect points to be exactly on the breaks.
 }
 \details{
-If you don't want unicode output, use \code{lbl_dash("-")}.
+If you don't want Unicode output, use \code{lbl_dash("-")}.
 }
 \section{Formatting endpoints}{
 

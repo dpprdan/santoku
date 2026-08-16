@@ -59,9 +59,8 @@ tab_deciles(x, ...)
 
 - weights:
 
-  `NULL` or numeric vector of same length as `x`. If not `NULL`,
-  [`Hmisc::wtd.quantile()`](https://rdrr.io/pkg/Hmisc/man/wtd.stats.html)
-  is used to calculate weighted quantiles.
+  Optional weights for the quantile calculation. Weights are normalized
+  to sum to `length(x)`.
 
 - recalc_probs:
 
