@@ -381,27 +381,31 @@ sequence_width.default <- function (width, start, until) {
 sequence_width.Period <- function(width, start, until) {
   loadNamespace("lubridate")
 
-  if (as.numeric(until - start) %% as.numeric(width) != 0 || until == start) {
-    # extend to cover all data / ensure at least one interval
-    until <- lubridate::add_with_rollback(until, width)
-  }
   # alternative to seq, using Period arithmetic
-  # We find the number n of widths that gets beyond seq_end
-  # and add (width * 0:n) to start
-  # normally this would be ceiling((seq_end - start)/width)
-  # we calculate it roughly using a Duration
+  # We estimate the required number of widths using a Duration, then adjust
+  # because calendar Periods do not have a fixed duration.
   n_intervals <- ceiling((until - start)/lubridate::as.duration(width))
+  # ensure at least one interval when start == until
+  n_intervals <- max(1, n_intervals)
   breaks <- lubridate::add_with_rollback(start, (seq(0, n_intervals) * width))
 
-  last_break <- breaks[length(breaks)]
-  too_short <- if (width > 0) {
-    last_break < until
+  covers_until <- if (width > 0) {
+    breaks >= until
   } else {
-    last_break > until
+    breaks <= until
   }
-  if (too_short) {
-    breaks <- c(breaks, lubridate::add_with_rollback(last_break, width))
+  while (! any(covers_until)) {
+    n_intervals <- n_intervals + 1
+    next_break <- lubridate::add_with_rollback(start, n_intervals * width)
+    breaks <- c(breaks, next_break)
+    covers_until <- if (width > 0) {
+      breaks >= until
+    } else {
+      breaks <= until
+    }
   }
 
-  breaks
+  # Keep the first break that covers until, and at least one interval.
+  last_needed <- max(2L, which(covers_until)[1L])
+  breaks[seq_len(last_needed)]
 }

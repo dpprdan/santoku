@@ -230,6 +230,53 @@ test_that("chop_width: Period quirks", {
     c(31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31),
     ignore_attr = TRUE
   )
+
+  year2001 <- seq(as.Date("2001-01-01"), as.Date("2001-12-31"), by = "day")
+  res3 <- chop_width(
+    year2001,
+    months(1),
+    labels = lbl_endpoints(left = FALSE, fmt = "%Y-%m-%d"),
+    extend = FALSE,
+    drop = FALSE
+  )
+  expect_equal(
+    levels(res3),
+    format(seq(as.Date("2001-02-01"), as.Date("2002-01-01"), by = "month"))
+  )
+
+  res4 <- chop_width(
+    year2001,
+    -months(1),
+    labels = lbl_endpoints(left = TRUE, fmt = "%Y-%m-%d"),
+    extend = FALSE,
+    drop = FALSE
+  )
+  expect_length(levels(res4), 12L)
+  expect_equal(levels(res4)[c(1L, 12L)], c("2000-12-31", "2001-11-30"))
+
+  res5 <- chop_width(
+    as.Date(c("2001-01-31", "2001-03-30")),
+    months(1),
+    labels = lbl_endpoints(left = FALSE, fmt = "%Y-%m-%d"),
+    extend = FALSE,
+    drop = FALSE
+  )
+  expect_equal(
+    levels(res5),
+    c("2001-02-28", "2001-03-31")
+  )
+
+  res6 <- chop_width(
+    as.Date("2001-01-01"),
+    years(1),
+    labels = lbl_endpoints(left = FALSE, fmt = "%Y-%m-%d"),
+    extend = FALSE,
+    drop = FALSE
+  )
+  expect_equal(
+    levels(res6),
+    "2002-01-01"
+  )
 })
 
 
