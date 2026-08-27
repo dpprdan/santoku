@@ -205,8 +205,6 @@ test_that("chop_width: Period", {
 
   expect_silent(chop_width(d1, days(7)))
   expect_silent(chop_width(dt1, minutes(7)))
-
-  # TODO: include tests that Period deals with quirks
 })
 
 
@@ -231,11 +229,41 @@ test_that("chop_width: Period quirks", {
     ignore_attr = TRUE
   )
 
+  date_labels <- lbl_endpoints(left = FALSE, fmt = "%Y-%m-%d")
+
+  exact_dates <- as.Date(c("2001-01-01", "2001-02-01"))
+  res_brk_width <- chop(
+    exact_dates,
+    brk_width(months(1)),
+    labels = date_labels,
+    extend = FALSE,
+    drop = FALSE
+  )
+  res_chop_width <- chop_width(
+    exact_dates,
+    months(1),
+    labels = date_labels,
+    extend = FALSE,
+    drop = FALSE
+  )
+  expect_equal(levels(res_brk_width), "2001-02-01")
+  expect_identical(res_brk_width, res_chop_width)
+
+  between_dates <- as.Date(c("2001-01-01", "2001-01-31"))
+  res_between <- chop_width(
+    between_dates,
+    months(1),
+    labels = date_labels,
+    extend = FALSE,
+    drop = FALSE
+  )
+  expect_equal(levels(res_between), "2001-02-01")
+
   year2001 <- seq(as.Date("2001-01-01"), as.Date("2001-12-31"), by = "day")
   res3 <- chop_width(
     year2001,
     months(1),
-    labels = lbl_endpoints(left = FALSE, fmt = "%Y-%m-%d"),
+    labels = date_labels,
     extend = FALSE,
     drop = FALSE
   )
@@ -257,7 +285,7 @@ test_that("chop_width: Period quirks", {
   res5 <- chop_width(
     as.Date(c("2001-01-31", "2001-03-30")),
     months(1),
-    labels = lbl_endpoints(left = FALSE, fmt = "%Y-%m-%d"),
+    labels = date_labels,
     extend = FALSE,
     drop = FALSE
   )
@@ -269,13 +297,92 @@ test_that("chop_width: Period quirks", {
   res6 <- chop_width(
     as.Date("2001-01-01"),
     years(1),
-    labels = lbl_endpoints(left = FALSE, fmt = "%Y-%m-%d"),
+    labels = date_labels,
     extend = FALSE,
     drop = FALSE
   )
   expect_equal(
     levels(res6),
     "2002-01-01"
+  )
+
+  leap_years <- as.Date(c("2020-02-29", "2022-02-28"))
+  res7 <- chop_width(
+    leap_years,
+    years(1),
+    labels = date_labels,
+    extend = FALSE,
+    drop = FALSE
+  )
+  expect_equal(levels(res7), c("2021-02-28", "2022-02-28"))
+})
+
+
+test_that("chop_width: Period and Duration across DST", {
+  skip_if_not_installed("lubridate")
+  library(lubridate)
+
+  timezone <- "America/New_York"
+  datetime_labels <- lbl_endpoints(left = FALSE, fmt = "%Y-%m-%d %H:%M %z")
+
+  spring <- as.POSIXct(
+    c("2021-03-13 00:00:00", "2021-03-16 00:00:00"),
+    tz = timezone
+  )
+  spring_period <- chop_width(
+    spring,
+    days(1),
+    labels = datetime_labels,
+    extend = FALSE,
+    drop = FALSE
+  )
+  expect_equal(
+    levels(spring_period),
+    c("2021-03-14 00:00 -0500", "2021-03-15 00:00 -0400",
+      "2021-03-16 00:00 -0400")
+  )
+
+  spring_duration <- chop_width(
+    spring,
+    ddays(1),
+    labels = datetime_labels,
+    extend = FALSE,
+    drop = FALSE
+  )
+  expect_equal(
+    levels(spring_duration),
+    c("2021-03-14 00:00 -0500", "2021-03-15 01:00 -0400",
+      "2021-03-16 01:00 -0400")
+  )
+
+  autumn <- as.POSIXct(
+    c("2021-11-06 00:00:00", "2021-11-09 00:00:00"),
+    tz = timezone
+  )
+  autumn_period <- chop_width(
+    autumn,
+    days(1),
+    labels = datetime_labels,
+    extend = FALSE,
+    drop = FALSE
+  )
+  expect_equal(
+    levels(autumn_period),
+    c("2021-11-07 00:00 -0400", "2021-11-08 00:00 -0500",
+      "2021-11-09 00:00 -0500")
+  )
+
+  autumn_duration <- chop_width(
+    autumn,
+    ddays(1),
+    labels = datetime_labels,
+    extend = FALSE,
+    drop = FALSE
+  )
+  expect_equal(
+    levels(autumn_duration),
+    c("2021-11-07 00:00 -0400", "2021-11-07 23:00 -0500",
+      "2021-11-08 23:00 -0500", "2021-11-09 23:00 -0500")
   )
 })
 
